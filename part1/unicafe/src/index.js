@@ -7,12 +7,12 @@ const Button = ({text, clickHandle}) => {
   )
 }
 
-const Stats = ({text, count}) => <div>{text} {count}</div>
+const Statistic = ({text, count}) => <tr><td>{text}</td><td>{count}</td></tr>
 
 const Statistics = ({good, neutral, bad}) => {
   const sum = good + neutral + bad
   const avg = (good - bad) / sum
-  const pos = good / sum * 100
+  const pos = (good / sum * 100) + "%"
 
   if (sum === 0) {
     return (
@@ -25,13 +25,16 @@ const Statistics = ({good, neutral, bad}) => {
   return (
     <div>
       <h1>statistics</h1>
-      <Stats text="good" count={good} />
-      <Stats text="neutral" count={neutral} />
-      <Stats text="bad" count={bad} />
-      <Stats text="all" count={sum} />
-      <Stats text="average" count={avg} />
-      <Stats text="positive" count={pos} />
-
+      <table>
+        <tbody>
+        <Statistic text="good" count={good} />
+        <Statistic text="neutral" count={neutral} />
+        <Statistic text="bad" count={bad} />
+        <Statistic text="all" count={sum} />
+        <Statistic text="average" count={avg} />
+        <Statistic text="positive" count={pos} />
+        </tbody>
+      </table>
     </div>
   )
 }
